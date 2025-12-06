@@ -1,0 +1,27 @@
+{
+  "name": "ai-quiz-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.1.0",
+    "@fastify/multipart": "^9.2.1",
+    "adm-zip": "^0.5.16",
+    "canvas": "^3.2.0",
+    "dotenv": "^16.6.1",
+    "fastify": "^5.0.0",
+    "mammoth": "^1.11.0",
+    "nanoid": "^4.0.0",
+    "nodemon": "^3.1.11",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.4",
+    "pdfjs-dist": "^2.16.105",
+    "pg": "^8.0.0",
+    "pptx-parser": "^1.1.7-beta.9",
+    "pptx2json": "^0.0.10",
+    "tesseract.js": "^6.0.1",
+    "xml2js": "^0.6.2"
+  }
+}

@@ -1,0 +1,115 @@
+# -------------------------
+# GLOBAL
+# -------------------------
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Log files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# Build Output
+dist/
+build/
+out/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# npm
+package-lock.json
+yarn.lock
+
+# Editor folders
+.vscode/
+.idea/
+*.swp
+
+# Misc
+*.patch
+
+# Temporary files
+.tmp
+temp/
+
+# -------------------------
+# FRONTEND (Next.js)
+# -------------------------
+
+.next/
+.next/
+.next/static
+.next/cache
+.next/pages
+.next/types
+
+# Next.js telemetry data
+.nextlemetry
+.next/cache/
+
+# ESLint
+.eslintcache
+
+# Coverage data
+coverage/
+
+# Exported build
+exports/
+
+# Images optimized cache
+*.orig
+
+# -------------------------
+# BACKEND (Node.js)
+# -------------------------
+
+# Uploaded files
+uploads/
+public/uploads/
+backend/uploads/
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# TypeScript cache (if you use TS)
+*.tsbuildinfo
+
+# Swagger docs cache
+swagger.json
+swagger.yaml
+
+# PM2 logs
+.pids
+*.pid
+*.seed
+*.pid.lock
+
+# -------------------------
+# Python artifacts (if used)
+# -------------------------
+__pycache__/
+*.pyc
+
+# -------------------------
+# TESTS
+# -------------------------
+jest-results/
+test-results/
+reports/
+
+# Ignore local notes
+notes.txt
+*.md~

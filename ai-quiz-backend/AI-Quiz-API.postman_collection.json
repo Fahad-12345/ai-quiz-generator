@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "AI Quiz Generator API",
+    "_postman_id": "12345678-quiz-api",
+    "description": "Postman collection for testing AI Quiz Generator routes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Quiz by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/quiz/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["quiz", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Quiz from Text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"JavaScript Quiz\",\n  \"text\": \"JavaScript is a programming language. It has closures, hoisting, functions, and arrays.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/generate",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["generate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Upload PDF",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": "/path/to/your/file.pdf"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/upload",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["upload"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
