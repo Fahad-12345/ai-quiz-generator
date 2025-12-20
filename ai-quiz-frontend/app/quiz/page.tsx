@@ -1,25 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuizList from "../components/QuizList";
 import Link from "next/link";
 import { jsPDF } from "jspdf";
 
-
+// Define the shape of a quiz question
+interface QuizQuestion {
+  question: string;
+  answer: string;
+  options: string[];
+}
 
 export default function QuizPage() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [questions] = useState<any[]>(() => {
-    const saved = sessionStorage.getItem("latestQuestions");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Initialize state from sessionStorage safely
+  useEffect(() => {
+    // guard for server / build
+    if (typeof window === "undefined") return;
+
+    const saved = window.sessionStorage.getItem("latestQuestions");
+    if (saved) setQuestions(JSON.parse(saved));
+
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   // Function to download quiz as PDF
   const downloadQuizPDF = () => {
     if (questions.length === 0) return;
 
     const doc = new jsPDF();
-    let y = 10; // vertical start position
+    let y = 10;
 
     doc.setFontSize(16);
     doc.text("Generated Quiz", 105, y, { align: "center" });
@@ -27,23 +42,19 @@ export default function QuizPage() {
     doc.setFontSize(12);
 
     questions.forEach((q, index) => {
-      // Question
       const questionText = `${index + 1}. ${q.question}`;
       const splitQuestion = doc.splitTextToSize(questionText, 180);
       doc.text(splitQuestion, 10, y);
       y += splitQuestion.length * 7;
 
-      // Options
-      q.options.forEach((opt: string, i: number) => {
+      q.options.forEach((opt, i) => {
         const optionText = String.fromCharCode(65 + i) + ") " + opt;
         const splitOption = doc.splitTextToSize(optionText, 180);
         doc.text(splitOption, 15, y);
         y += splitOption.length * 7;
       });
 
-      y += 5; // space between questions
-
-      // Add new page if y is too big
+      y += 5;
       if (y > 280) {
         doc.addPage();
         y = 10;
